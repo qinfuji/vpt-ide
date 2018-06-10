@@ -15,7 +15,7 @@ module.exports = {
       : false,
   mode: process.env.NODE_ENV,
   cache: true,
-  context: path.join(__dirname, 'app/web'),
+  context: path.join(__dirname, 'web'),
   target: 'web',
   performance: {
     hints: false,
@@ -65,7 +65,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     process.env.NODE_ENV == 'development' &&
       new webpack.DllReferencePlugin({
-        context: path.join(__dirname, 'app/web'),
+        context: path.join(__dirname, 'web'),
         manifest: require(path.join(__dirname, './dll/manifest.json'))
       }),
     new CopyWebpackPlugin([
@@ -74,23 +74,23 @@ module.exports = {
         to: path.join(__dirname, 'public/libs/vs')
       },
       {
-        from: path.join(__dirname, './app/web/login.html'),
+        from: path.join(__dirname, './web/login.html'),
         to: path.join(__dirname, 'public')
       },
       {
-        from: path.join(__dirname, './app/web/libs'),
+        from: path.join(__dirname, './web/libs'),
         to: path.join(__dirname, 'public/libs')
       },
       {
-        from: path.join(__dirname, 'app/web/images'),
+        from: path.join(__dirname, './web/images'),
         to: path.join(__dirname, 'public/images')
       },
       {
-        from: path.join(__dirname, 'app/web/asset'),
+        from: path.join(__dirname, './web/asset'),
         to: path.join(__dirname, 'public/asset')
       },
       {
-        from: path.join(__dirname, 'app/web/fonts'),
+        from: path.join(__dirname, './web/fonts'),
         to: path.join(__dirname, 'public/fonts')
       },
       {
@@ -100,7 +100,7 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       title: 'visual prototype tools',
-      template: path.join(__dirname, 'app/web/index.html'),
+      template: path.join(__dirname, './web/index.html'),
       excludeChunks: ['main']
     })
   ]),

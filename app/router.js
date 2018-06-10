@@ -10,6 +10,4 @@ module.exports = app => {
     })
   );
   router.redirect('/', '/public/index.html'); //重定向到首页
-
-  //app.router.get('/project/data', controller.project.data);
 };
