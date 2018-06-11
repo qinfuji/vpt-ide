@@ -19,12 +19,6 @@
       {
         "spec": true
       }
-    ],
-    [
-      "import",
-      {
-        "libraryName": "antd"
-      }
     ]
   ],
   "comments": false

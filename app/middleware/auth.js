@@ -8,7 +8,7 @@ module.exports = (options, app) => {
       ctx.path !== '/public/login.html'
     ) {
       console.log('app.passport.isAuthenticated() false , redirect login');
-      ctx.response.redirect('/public/login.html');
+      ctx.response.redirect('/public/index.html');
     } else {
       await next();
     }

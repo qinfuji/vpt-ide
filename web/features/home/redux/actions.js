@@ -1,1 +1,0 @@
-export { fetchProjectData } from './fetchProjectData';

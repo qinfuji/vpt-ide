@@ -5,9 +5,10 @@ import { render } from 'react-dom';
 import Root from './Root';
 import routeConfig from './common/routeConfig';
 import configStore from './common/configStore';
+import { initializeIcons } from '@uifabric/icons';
+initializeIcons();
 
 const store = configStore();
-
 let root = document.getElementById('react-root');
 if (!root) {
   root = document.createElement('div');

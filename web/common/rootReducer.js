@@ -2,11 +2,15 @@
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import homeReducer from '../features/home/redux/reducer';
+import appReducer from '../features/app/redux/reducer';
+import projectReducer from '../features/projectcontrol/redux/reducer';
+import pageReducer from '../features/pagecontrol/redux/reducer';
 
 const reducerMap = {
   router: routerReducer,
-  home: homeReducer
+  app: appReducer,
+  project: projectReducer,
+  page: pageReducer
 };
 
 export default combineReducers(reducerMap);

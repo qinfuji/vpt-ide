@@ -15,7 +15,7 @@ module.exports = {
       : false,
   mode: process.env.NODE_ENV,
   cache: true,
-  context: path.join(__dirname, 'web'),
+  context: path.join(__dirname, './web'),
   target: 'web',
   performance: {
     hints: false,
@@ -27,11 +27,9 @@ module.exports = {
       development: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client?path=http://127.0.0.1:9000/__webpack_hmr',
-        './styles/index.less',
-        './styles/antdCustom.less',
         './index'
       ],
-      production: ['./styles/index.less', './styles/antdCustom.less', './index']
+      production: ['./index']
     }[process.env.NODE_ENV]
   },
 
@@ -74,24 +72,12 @@ module.exports = {
         to: path.join(__dirname, 'public/libs/vs')
       },
       {
-        from: path.join(__dirname, './web/login.html'),
-        to: path.join(__dirname, 'public')
-      },
-      {
-        from: path.join(__dirname, './web/libs'),
-        to: path.join(__dirname, 'public/libs')
-      },
-      {
-        from: path.join(__dirname, './web/images'),
-        to: path.join(__dirname, 'public/images')
-      },
-      {
         from: path.join(__dirname, './web/asset'),
         to: path.join(__dirname, 'public/asset')
       },
       {
-        from: path.join(__dirname, './web/fonts'),
-        to: path.join(__dirname, 'public/fonts')
+        from: path.join(__dirname, './web/libs'),
+        to: path.join(__dirname, 'public/libs')
       },
       {
         from: path.join(__dirname, 'dll'),

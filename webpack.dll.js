@@ -10,7 +10,7 @@ module.exports = {
   mode: 'development',
   devtool: false,
   cache: true,
-  context: path.join(__dirname, 'app/web'),
+  context: path.join(__dirname, './web'),
   performance: {
     hints: false,
     maxEntrypointSize: 250,
@@ -29,7 +29,6 @@ module.exports = {
       'redux',
       'redux-logger',
       'redux-thunk',
-      'antd',
       'axios',
       'reselect'
     ]

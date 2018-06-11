@@ -1,7 +1,7 @@
-import App from '../features/home/App';
-import homeRoute from '../features/home/route';
+import App from '../features/app/App';
+import pageRoute from '../features/pagecontrol/';
 
-const childRoutes = [homeRoute];
+const childRoutes = [pageRoute];
 
 const routes = [
   {
