@@ -47,14 +47,7 @@ export class App extends React.Component {
             <TopMenu />
           </div>
           <div className={styles.appWorkspace}>
-            <SplitPane split="vertical">
-              <Pane initialSize="300px" minSize="220px">
-                <ProjectControl />
-              </Pane>
-              <Pane>
-                <PageControl />
-              </Pane>
-            </SplitPane>
+            <ProjectControl />
           </div>
         </div>
       );

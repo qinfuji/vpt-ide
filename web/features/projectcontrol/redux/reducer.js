@@ -2,7 +2,7 @@
 import initialState from './initialState';
 import { reducer as fetchProjectData } from './fetchProjectData';
 import { reducer as createProject } from './createProject';
-import { reducer as fetchProjects } from './fatchProjects';
+import { reducer as fetchProjects } from './fetchProjects';
 const reducers = [fetchProjectData, createProject, fetchProjects];
 
 export default function reducer(state = initialState, action) {
