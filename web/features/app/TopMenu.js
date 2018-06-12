@@ -69,7 +69,6 @@ class TopMenu extends React.Component {
     let menuData = getMenuData(e => {
       console.log('click ', e);
     });
-    console.log(menuData);
     return (
       <div className="top-menu">
         <CommandBar items={menuData} />

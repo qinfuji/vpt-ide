@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cookies from 'js-cookie';
 import { LOGIN_BEGIN, LOGIN_FAILURE, SET_USER_INFO } from './constants';
 
 export function login(username, password) {
@@ -15,11 +16,13 @@ export function login(username, password) {
         })
         .then(
           res => {
-            console.log(res.data);
             resolve(res.data);
+            let user = cookies.get('userInfo')
+              ? JSON.parse(cookies.get('userInfo'))
+              : null;
             dispatch({
               type: SET_USER_INFO,
-              data: JSON.parse(res.data)
+              data: user
             });
           },
           err => {

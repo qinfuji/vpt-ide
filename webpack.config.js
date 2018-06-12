@@ -105,7 +105,7 @@ module.exports = {
       {
         test: /\.less$/,
         loader:
-          'style-loader!css-loader?sourceMap!less-loader?{"sourceMap":true,"javascriptEnabled": true}'
+          'style-loader!css-loader?module&sourceMap!less-loader?{"sourceMap":true,"javascriptEnabled": true}'
       },
       {
         test: /\.css$/,
@@ -114,6 +114,36 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif)$/,
         loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /\.scss$/,
+        enforce: 'pre',
+        exclude: [/node_modules/],
+        use: [
+          {
+            loader: '@microsoft/loader-load-themed-styles' // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              modules: true,
+              importLoaders: 2,
+              localIdentName: '[name]_[local]_[hash:base64:5]',
+              minimize: false
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [require('autoprefixer')];
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
       }
     ]
   }

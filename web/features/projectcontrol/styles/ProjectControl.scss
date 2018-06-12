@@ -1,0 +1,56 @@
+@import '../../../styles/common';
+
+.root {
+  position: relative;
+  height: 100%;
+}
+
+.controlPanel {
+  position: absolute;
+  width: 30px;
+  //bottom: 0px;
+  top: 0px;
+  cursor: pointer;
+  //border-bottom: 1px solid rgb(74, 73, 73);
+}
+
+.viewPanel {
+  position: absolute;
+  left: 30px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgb(74, 73, 73);
+}
+
+.viewPanel_title {
+  line-height: 20px;
+  height: 20px;
+}
+
+.viewPanel_content {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.controlTab {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 8px 2px;
+  width: 26px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 16px;
+  //background-color: rgb(148, 145, 145);
+
+  &:hover {
+    background-color: rgb(74, 73, 73);
+  }
+}
+
+.contrrolTab_active {
+  background: rgb(74, 73, 73);
+}

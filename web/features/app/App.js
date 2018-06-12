@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 import { connect } from 'react-redux';
 import { setUser } from './redux/actions';
 import { SplitPane, Pane } from 'vpt-components';
@@ -8,12 +9,24 @@ import TopMenu from './TopMenu';
 import ProjectControl from '../projectcontrol';
 import PageControl from '../pagecontrol';
 import Login from './Login';
-
+import styles from './styles/App.scss';
+import overTheme from './appTheme.json';
 export class App extends React.Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired
   };
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    const finalTheme = loadTheme({ ...{ palette: overTheme } });
+    document.body.style.backgroundColor =
+      finalTheme.semanticColors.bodyBackground;
+    document.body.style.color = finalTheme.semanticColors.bodyText;
+  }
 
   renderLoading() {
     return (
@@ -24,24 +37,25 @@ export class App extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     let { userInfo } = this.props;
-    console.log(userInfo);
-    console.log(typeof userInfo);
-    if (typeof user === undefined || !userInfo) {
+    if (!userInfo) {
       return <Login />;
     } else {
       return (
         <div className="home-app">
-          <TopMenu />
-          <SplitPane split="vertical">
-            <Pane initialSize="225px" minSize="220px">
-              <ProjectControl />
-            </Pane>
-            <Pane>
-              <PageControl />
-            </Pane>
-          </SplitPane>
+          <div className={styles.appToolbar}>
+            <TopMenu />
+          </div>
+          <div className={styles.appWorkspace}>
+            <SplitPane split="vertical">
+              <Pane initialSize="300px" minSize="220px">
+                <ProjectControl />
+              </Pane>
+              <Pane>
+                <PageControl />
+              </Pane>
+            </SplitPane>
+          </div>
         </div>
       );
     }

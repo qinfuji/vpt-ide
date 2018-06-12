@@ -1,11 +1,13 @@
 module.exports = app => {
   const { router } = app;
 
+  router.get('logout', ctx => {});
+
   router.post(
     '/login',
     app.passport.authenticate('local', {
-      successRedirect: '/public/index.html',
-      failureRedirect: '/public/login.html',
+      successRedirect: '/user/curuser',
+      failureRedirect: '/',
       failureFlash: true
     })
   );
