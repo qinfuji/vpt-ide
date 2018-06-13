@@ -10,12 +10,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devServer: {
-    port: 8088,
-    setup: function(app) {
-      app.get('/some/path', function(req, res) {
-        res.json({ custom: 'response' });
-      });
-    }
+    contentBase: path.join(__dirname, 'public'),
+    port: 9000,
+    hot: true,
+    // setup: function(app) {
+    //   app.get('/some/path', function(req, res) {
+    //     res.json({ custom: 'response' });
+    //   });
+    // },
+    proxy: [
+      {
+        changeOrigin: true,
+        context: ['/projects'],
+        target: 'http://yapi.demo.qunar.com/mock/10008'
+      }
+    ]
   },
   devtool:
     process.env.NODE_ENV == 'development'

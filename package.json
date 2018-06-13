@@ -21,6 +21,7 @@
     "start": "cross-env EGG_SERVER_ENV=prod NODE_ENV=production node index.js",
     "lint": "eslint .",
     "fix": "eslint --fix app/ ",
+    "webpack-dev": "cross-env NODE_ENV=development webpack-dev-server --inline",
     "ii": "npm install --registry https://registry.npm.taobao.org"
   },
   "dependencies": {
@@ -113,6 +114,7 @@
     "tslint-react": "^3.6.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.4"
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
   }
 }

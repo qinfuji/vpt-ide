@@ -9,6 +9,7 @@ import {
 } from 'office-ui-fabric-react/lib/MessageBar';
 import { BaseComponent } from 'office-ui-fabric-react/lib/Utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import ProjectList from './ProjectList';
 import {
   FETCH_PROJECTS_BEGIN,
   FETCH_PROJECTS_SUCCESS,
@@ -24,7 +25,7 @@ class SelectProject extends BaseComponent {
   state = {};
 
   render() {
-    let { showme, fetchStatus } = this.props.selectProject;
+    let { showme, fetchStatus, projects } = this.props.selectProject;
     return (
       showme && (
         <Dialog
@@ -42,7 +43,9 @@ class SelectProject extends BaseComponent {
         >
           <div className={styles.projectList}>
             {FETCH_PROJECTS_BEGIN == fetchStatus && this._renderSpinner()}
-            {FETCH_PROJECTS_SUCCESS == fetchStatus && this._renderProjectList()}
+            {FETCH_PROJECTS_SUCCESS == fetchStatus &&
+              projects &&
+              this._renderProjectList(projects)}
             {FETCH_PROJECTS_FAILURE == fetchStatus && this._renderSpinner()}
           </div>
         </Dialog>
@@ -60,13 +63,13 @@ class SelectProject extends BaseComponent {
     showme(false);
   }
 
-  _renderProjectList() {
-    return <div>我是项目列表</div>;
+  _renderProjectList(projects) {
+    return <ProjectList items={projects} />;
   }
 
   _renderSpinner() {
     return (
-      <div>
+      <div className={styles.spinnerContainer}>
         <Spinner size={SpinnerSize.medium} />
       </div>
     );

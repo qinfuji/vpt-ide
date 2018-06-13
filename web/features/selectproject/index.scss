@@ -2,8 +2,9 @@
 
 :global {
   .selectproject-dialogMainOverride {
-    width: 25%;
+    width: 20%;
     max-width: 600px;
+    overflow: hidden;
   }
 
   .ms-Dialog-title {
@@ -14,10 +15,20 @@
   .ms-Dialog-inner {
     padding: 2px 2px;
   }
+
+  .ms-Dialog--close {
+    width: 100%;
+  }
 }
 
 .projectList {
   height: 430px;
   max-height: 600px;
   background-color: $ms-color-blackTranslucent40;
+  overflow: hidden;
+}
+
+.spinnerContainer {
+  margin: 0 auto;
+  padding: 200px 0;
 }
