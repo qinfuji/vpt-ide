@@ -4,13 +4,12 @@ import { bindActionCreators } from 'redux';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 import { connect } from 'react-redux';
 import { setUser } from './redux/actions';
-import { SplitPane, Pane } from 'vpt-components';
 import TopMenu from './TopMenu';
 import ProjectControl from '../projectcontrol';
-import PageControl from '../pagecontrol';
 import Login from './Login';
 import styles from './styles/App.scss';
 import overTheme from './appTheme.json';
+import SelectProject from '../selectproject';
 export class App extends React.Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
@@ -49,6 +48,7 @@ export class App extends React.Component {
           <div className={styles.appWorkspace}>
             <ProjectControl />
           </div>
+          <SelectProject />
         </div>
       );
     }

@@ -32,5 +32,10 @@ module.exports = app => {
      * 安装依赖库,第三方库
      */
     async addDependent() {}
+
+    async userProjects() {
+      let { ctx } = this;
+      ctx.body = {};
+    }
   };
 };

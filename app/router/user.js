@@ -4,7 +4,6 @@ module.exports = app => {
   userProjects && app.router.get('/users/:uid/projecs', userProjects);
 
   app.router.get('/user/curuser', ctx => {
-    console.log('--->', arguments);
     ctx.body = ctx.user;
   });
 };

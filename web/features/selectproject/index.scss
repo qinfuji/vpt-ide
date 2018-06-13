@@ -1,0 +1,23 @@
+@import '../../styles/common';
+
+:global {
+  .selectproject-dialogMainOverride {
+    width: 25%;
+    max-width: 600px;
+  }
+
+  .ms-Dialog-title {
+    @include ms-font-m-plus;
+    padding: 10px 15px;
+  }
+
+  .ms-Dialog-inner {
+    padding: 2px 2px;
+  }
+}
+
+.projectList {
+  height: 430px;
+  max-height: 600px;
+  background-color: $ms-color-blackTranslucent40;
+}

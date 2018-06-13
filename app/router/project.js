@@ -47,5 +47,5 @@ module.exports = app => {
   /**
    * 得到当前用户的项目列表
    */
-  userProjects && app.router.get('/projects/user/:userId', userProjects);
+  userProjects && app.router.get('/projects', userProjects);
 };

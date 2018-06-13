@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import { DirectionalHint } from 'office-ui-fabric-react/lib/common/DirectionalHint';
 import { OverflowSet } from 'office-ui-fabric-react/lib/OverflowSet';
@@ -9,6 +11,9 @@ import ToolBox from './ToolsBox';
 import ProjectExplorer from './ProjectExplorer';
 import PageControl from '../pagecontrol';
 import Dependencies from './Dependencies';
+
+import { showme as openProjectSelector } from '../selectproject/redux/actions';
+
 import styles from './styles/ProjectControl.scss';
 
 class ProjectControl extends BaseComponent {
@@ -20,7 +25,17 @@ class ProjectControl extends BaseComponent {
     super(props);
   }
 
+  componentDidMount() {
+    let { projectInfo } = this.props.projectControl;
+    let { openProjectSelector } = this.props.actions;
+    if (!projectInfo) {
+      openProjectSelector(true);
+    }
+  }
+
   render() {
+    let { projectInfo } = this.props.projectControl;
+    console.log(projectInfo);
     return (
       <SplitPane split="vertical">
         <Pane initialSize="300px" minSize="220px">
@@ -36,12 +51,10 @@ class ProjectControl extends BaseComponent {
                   vertical
               />
             </div>
-            {this._renderViewPanel()}
+            {projectInfo && this._renderViewPanel()}
           </div>
         </Pane>
-        <Pane>
-          <PageControl />
-        </Pane>
+        <Pane>{projectInfo && <PageControl />}</Pane>
       </SplitPane>
     );
   }
@@ -92,4 +105,18 @@ class ProjectControl extends BaseComponent {
   }
 }
 
-export default ProjectControl;
+function mapStateToProps(state) {
+  return {
+    projectControl: state.projectControl
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ openProjectSelector }, dispatch)
+  };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectControl);

@@ -9,6 +9,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devServer: {
+    port: 8088,
+    setup: function(app) {
+      app.get('/some/path', function(req, res) {
+        res.json({ custom: 'response' });
+      });
+    }
+  },
   devtool:
     process.env.NODE_ENV == 'development'
       ? 'cheap-module-inline-source-map'
