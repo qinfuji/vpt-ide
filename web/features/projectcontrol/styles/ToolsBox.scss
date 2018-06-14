@@ -16,7 +16,6 @@
   padding-left: 10px;
   font-size: 12px;
   background-color: $ms-color-neutralLight;
-  margin-bottom: 20px;
 }
 
 .title {
@@ -36,11 +35,20 @@
 }
 
 .toolList {
-  margin: 10px 0 10px 20px;
+  margin: 20px 2px 40px 2px;
+  height: 96%;
+  overflow: auto;
 }
 
 .toolListItem {
+  padding: 4px 4px 4px 12px;
+  margin-bottom: 2px;
   &:hover {
     background-color: $ms-color-neutralLight;
+    cursor: pointer;
   }
+}
+
+.toolListItem-itemImage {
+  display: inline-block;
 }

@@ -17,7 +17,7 @@ module.exports = {
       {
         changeOrigin: true,
         context: ['/projects'],
-        target: 'http://yapi.demo.qunar.com/mock/10008'
+        target: 'http://localhost:3000/mock/11'
       }
     ]
   },

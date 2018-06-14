@@ -12,9 +12,9 @@ class ToolsBox extends React.Component {
 
   _onRenderCell(item, index) {
     return (
-      <div className={styles.toollist}>
+      <div className={styles.toolListItem}>
         <Image
-            className={styles['projectListContainer-itemImage']}
+            className={styles['toolListItem-itemImage']}
             height={20}
             imageFit={ImageFit.cover}
             src={item.logo}
@@ -56,7 +56,7 @@ class ToolsBox extends React.Component {
             </TooltipHost>
           </span>
         </div>
-        <div>{this._renderToolList()}</div>
+        <div className={styles.toolList}>{this._renderToolList()}</div>
       </div>
     );
   }
