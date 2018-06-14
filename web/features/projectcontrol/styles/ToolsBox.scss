@@ -1,0 +1,46 @@
+@import '../../../styles/common';
+
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: $ms-color-neutralLighterAlt;
+}
+
+.head {
+  line-height: 30px;
+  height: 30px;
+  padding-left: 10px;
+  font-size: 12px;
+  background-color: $ms-color-neutralLight;
+  margin-bottom: 20px;
+}
+
+.title {
+  float: left;
+  font-size: 14px;
+}
+
+.tools {
+  float: right;
+  height: inherit;
+  cursor: pointer;
+}
+
+.toolsIcon {
+  height: inherit;
+  padding: 0 5px;
+}
+
+.toolList {
+  margin: 10px 0 10px 20px;
+}
+
+.toolListItem {
+  &:hover {
+    background-color: $ms-color-neutralLight;
+  }
+}

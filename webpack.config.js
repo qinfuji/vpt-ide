@@ -13,11 +13,6 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     port: 9000,
     hot: true,
-    // setup: function(app) {
-    //   app.get('/some/path', function(req, res) {
-    //     res.json({ custom: 'response' });
-    //   });
-    // },
     proxy: [
       {
         changeOrigin: true,

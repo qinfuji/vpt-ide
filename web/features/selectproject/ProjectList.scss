@@ -29,7 +29,7 @@
     border-bottom: 1px solid $bodyDividerColor;
     display: flex;
     &:hover {
-      background: rgb(74, 73, 73);
+      background-color: $ms-color-neutralLighter;
     }
   }
 

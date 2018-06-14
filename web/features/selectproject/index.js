@@ -16,8 +16,10 @@ import {
   FETCH_PROJECTS_FAILURE
 } from './redux/constants';
 
-import { select, showme, fetchProjects } from './redux/actions';
-import { changeproject } from '../projectcontrol/redux/actions';
+import { showme, fetchProjects } from './redux/actions';
+import { select } from './services.js';
+console.log(select);
+import { changeProject } from '../projectcontrol/redux/actions';
 
 import * as styles from './index.scss';
 
@@ -64,7 +66,24 @@ class SelectProject extends BaseComponent {
   }
 
   _renderProjectList(projects) {
-    return <ProjectList items={projects} />;
+    return (
+      <ProjectList
+          items={projects}
+          onSelected={this._projectSelected.bind(this)}
+      />
+    );
+  }
+
+  async _projectSelected(item) {
+    let { showme, changeProject } = this.props.actions;
+    try {
+      await select(item);
+      showme(false);
+      changeProject(item);
+    } catch (err) {
+      //TODO 这里需要处理异常情况
+      console.log(err);
+    }
   }
 
   _renderSpinner() {
@@ -96,7 +115,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ select, showme, fetchProjects }, dispatch)
+    actions: bindActionCreators(
+      { showme, fetchProjects, changeProject },
+      dispatch
+    )
   };
 }
 export default connect(

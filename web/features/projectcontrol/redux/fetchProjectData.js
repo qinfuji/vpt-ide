@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import initialState from './initialState';
 import axios from 'axios';
 
 import {
@@ -14,10 +14,9 @@ export function fetchProjectData(projectInfo) {
     });
     return new Promise((resolve, reject) => {
       console.log('start fetchProjectData');
-
-      axios.get('/projects/11').then(
+      let url = `/projects/${projectInfo.id}`;
+      axios.get(url).then(
         res => {
-          if (window.ON_VPT_LOAD) window.ON_VPT_LOAD();
           dispatch({
             type: FETCH_PROJECT_DATA_SUCCESS,
             data: res.data
@@ -37,22 +36,31 @@ export function fetchProjectData(projectInfo) {
   };
 }
 
-export function reducer(state, action) {
+export function reducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROJECT_DATA_BEGIN:
       return {
-        ...state
+        ...state,
+        projectInfoFetchState: FETCH_PROJECT_DATA_BEGIN
       };
 
     case FETCH_PROJECT_DATA_SUCCESS: {
       return {
-        ...state
+        ...state,
+        projectInfoFetchState: FETCH_PROJECT_DATA_SUCCESS,
+        projectInfo: action.data,
+        pageInfoFetchState: null,
+        pageInfo: null,
+        pageOutline: null,
+        componentPropsInfo: null
       };
     }
-    case FETCH_PROJECT_DATA_FAILURE:
+    case FETCH_PROJECT_DATA_FAILURE: {
       return {
-        ...state
+        ...state,
+        projectInfoFetchState: FETCH_PROJECT_DATA_FAILURE
       };
+    }
     default:
       return state;
   }

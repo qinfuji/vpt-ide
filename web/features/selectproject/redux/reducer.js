@@ -1,5 +1,4 @@
 //import _ from 'lodash';
-import _ from 'lodash';
 import initialState from './initialState';
 import { reducer as fetchProjects } from './fetchProjects';
 import { reducer as showme } from './showme';

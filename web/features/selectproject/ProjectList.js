@@ -21,20 +21,22 @@ class ProjectList extends BaseComponent {
       selection: new Selection({
         getKey: this._getKey,
         selectionMode: SelectionMode.single
-        //onSelectionChanged: this._onSelectionChanged.bind(this)
       })
     };
     let { items } = this.props;
     this.state.selection.setItems(items, false);
   }
 
+  componentDidMount() {
+    console.log(this.focusZone);
+    if (this.focusZone) {
+      this.focusZone.focus(true);
+    }
+  }
+
   _getKey(item) {
     return item.id;
   }
-
-  // componentDidMount(): void {
-  //   this._hasMounted = true;
-  // }
 
   render() {
     let { items } = this.props;
@@ -44,8 +46,16 @@ class ProjectList extends BaseComponent {
           className={styles['projectListContainer-container']}
           data-is-scrollable
       >
-        <SelectionZone onItemInvoked={this._select} selection={selection}>
-          <FocusZone direction={FocusZoneDirection.vertical}>
+        <SelectionZone
+            onItemInvoked={this._select.bind(this)}
+            selection={selection}
+        >
+          <FocusZone
+              componentRef={focusZone => {
+              this.focusZone = focusZone;
+            }}
+              direction={FocusZoneDirection.vertical}
+          >
             <List items={items} onRenderCell={this._onRenderCell} />
           </FocusZone>
         </SelectionZone>
@@ -53,14 +63,11 @@ class ProjectList extends BaseComponent {
     );
   }
 
-  // _onSelectionChanged(): void {
-  //   if (this._hasMounted) {
-  //     this.forceUpdate();
-  //   }
-  // }
-
   _select(item, index) {
-    console.log('_select', item, index);
+    let { onSelected } = this.props;
+    if (onSelected) {
+      onSelected(item);
+    }
   }
 
   _onRenderCell(item, index, isScrolling) {
@@ -69,7 +76,7 @@ class ProjectList extends BaseComponent {
           className={styles['projectListContainer-itemCell']}
           data-is-focusable
           data-selection-index={index}
-          data-selection-invoke
+        /*data-selection-invoke  选择后鼠标单击后触发*/
           data-selection-select /* 一般该属性用于<a>标签的情况，在事件触发前执行*/
       >
         <Image

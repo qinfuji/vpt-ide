@@ -18,7 +18,7 @@ import styles from './styles/ProjectControl.scss';
 
 class ProjectControl extends BaseComponent {
   state = {
-    curTabkey: 'projectExplorer'
+    curTabkey: 'toolbox'
   };
 
   constructor(props) {
@@ -35,10 +35,9 @@ class ProjectControl extends BaseComponent {
 
   render() {
     let { projectInfo } = this.props.projectControl;
-    console.log(projectInfo);
     return (
       <SplitPane split="vertical">
-        <Pane initialSize="300px" minSize="220px">
+        <Pane initialSize="250px" minSize="220px">
           <div className={styles.root}>
             <div className={styles.controlPanel}>
               <OverflowSet
@@ -51,7 +50,7 @@ class ProjectControl extends BaseComponent {
                   vertical
               />
             </div>
-            {projectInfo && this._renderViewPanel()}
+            {projectInfo && this._renderViewPanel(projectInfo)}
           </div>
         </Pane>
         <Pane>{projectInfo && <PageControl />}</Pane>
@@ -59,19 +58,17 @@ class ProjectControl extends BaseComponent {
     );
   }
 
-  _renderViewPanel() {
+  _renderViewPanel(projectInfo) {
+    console.log(projectInfo);
     let { curTabkey } = this.state;
     return (
       <div className={styles.viewPanel}>
-        <div className={styles.viewPanel_title}>
-          {curTabkey == 'projectExplorer' && '项目结构'}
-          {curTabkey == 'toolbox' && '工具栏'}
-          {curTabkey == 'dependencies' && '项目依赖'}
-        </div>
         <div className={styles.viewPanel_content}>
           {curTabkey == 'projectExplorer' && <ProjectExplorer />}
-          {curTabkey == 'toolbox' && <ToolBox />}
-          {curTabkey == 'dependencies' && <Dependencies />}
+          {curTabkey == 'toolbox' && <ToolBox items={projectInfo.components} />}
+          {curTabkey == 'dependencies' && (
+            <Dependencies items={projectInfo.dependencies} />
+          )}
         </div>
       </div>
     );
