@@ -24,7 +24,7 @@ class ProjectList extends BaseComponent {
       })
     };
     let { items } = this.props;
-    this.state.selection.setItems(items, false);
+    this.state.selection.setItems(items, true);
   }
 
   componentDidMount() {
@@ -39,6 +39,7 @@ class ProjectList extends BaseComponent {
   }
 
   render() {
+    console.log('render');
     let { items } = this.props;
     let { selection } = this.state;
     return (
@@ -81,10 +82,10 @@ class ProjectList extends BaseComponent {
       >
         <Image
             className={styles['projectListContainer-itemImage']}
-            height={50}
+            height={40}
             imageFit={ImageFit.cover}
             src={isScrolling ? undefined : item.logo}
-            width={50}
+            width={40}
         />
         <div className={styles['projectListContainer-itemContent']}>
           <div className={styles['projectListContainer-itemName']}>

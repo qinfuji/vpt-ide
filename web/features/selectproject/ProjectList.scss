@@ -2,22 +2,8 @@
 
 .projectListContainer {
   &-container {
+    height: inherit;
     overflow: auto;
-    max-height: 500px;
-    &::-webkit-scrollbar {
-      width: 0.5rem;
-      height: 0.5rem;
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      transition: all 0.3s ease;
-      border-color: transparent;
-      background-color: hsla(0, 0%, 100%, 0.1);
-      z-index: 40;
-    }
-    &::-webkit-scrollbar-corner {
-      background-color: transparent;
-    }
   }
 
   &-itemCell {
